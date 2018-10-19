@@ -1,6 +1,22 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
 #start {
     display: none;
 }
 #gameover {
     display: none;
+}
+#area1 {
+    fill: black;
+    stroke-width: 0;
+}
+#area2 {
+    fill: green;
+}
+#bar {
+    stroke: white;
+    stroke-width: 10px;
 }
