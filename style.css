@@ -2,12 +2,68 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 #start {
-    display: none;
+    height: 100vh;
+    padding-top: 33vh;
+    background: linear-gradient(45deg, #0775d5 55%, #ffae22 55%);
 }
-#gameover {
-    display: none;
+#wrapper {
+    width: 35vw;
+    height: 35vh;
+    background: white;
+    margin: 0 auto;
+    padding: 0;
+}
+#wrapper > div {
+    color: #ffae22;
+    font-size: 125%;
+    margin: 0 auto;
+    padding-top: 30px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+#wrapper > div > h1 {
+    margin-bottom: 5vh;
+}
+#wrapper > div > h1 > span {
+    color: #0775d5;
+}
+#startbtn {
+    position: relative;
+    width: 200px;
+    height: 68px;
+    background: linear-gradient(90deg, #ffae22 10%, #0775d5 10%);
+    font-size: 30px;
+    color: white;
+    padding-left: 13px;
+    letter-spacing: 2px;
+    border-width: 0;
+    border-radius: 0;
+    overflow: hidden;
+}
+#startbtn > span {
+    position: relative;
+    z-index: 1;
+}
+#startbtn::before {
+    content: "";
+    color:#ffae22;
+    display: block;
+    background-color: #ffae22;
+    width: 20px;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width .4s;
+}
+#startbtn:hover::before {
+    width: 180px;
 }
 #bar {
     stroke: white;

@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="start">
-</div>
-<div id="game">
-  <svg id="svg">
-    <polygon id="area1"/>
-    <rect id="square" width="50" height="50"/>
-    <polygon id="area2"/>
-    <line id="bar"/>
-  </svg>
-</div>
-<div id="gameover">
-</div>
+  <div id="start">
+    <div id="wrapper">
+        <div>
+          <h1>Welcome <span>to the game</span></h1>
+          <button id="startbtn"><span>Play</span></button>
+        </div>
+    </div>
+  </div>
+  <div id="game">
+    <svg id="svg">
+      <polygon id="area1"/>
+      <rect id="square" width="50" height="50"/>
+      <polygon id="area2"/>
+      <line id="bar"/>
+    </svg>
+  </div>
+  <div id="gameover">
+    <p id="score"></p>
+  </div>
 <script src="bar.js"></script>
 </body>
 </html>
