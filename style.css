@@ -75,7 +75,7 @@ html, body {
     position: relative;
     width: 200px;
     height: 68px;
-    background: linear-gradient(90deg, #ffae22 10%, #0775d5 10%);
+    background: #0775d5;
     font-size: 30px;
     color: white;
     padding-left: 13px;
@@ -93,7 +93,7 @@ html, body {
     color:#ffae22;
     display: block;
     background-color: #ffae22;
-    width: 20px;
+    width: 10px;
     height: inherit;
     position: absolute;
     top: 0;
@@ -101,7 +101,7 @@ html, body {
     transition: width .4s;
 }
 #startbtn:hover::before {
-    width: 180px;
+    width: 190px;
 }
 #bar {
     stroke: white;
@@ -132,7 +132,29 @@ html, body {
     width: 250px;
     height: 70px;
     font-size: 40px;
+    position: relative;
 }
 #reset:hover {
-    background-color: rgb(255, 202, 189);
+    background-color: rgb(251, 198, 185);
+}
+#reset > span {
+    position: relative;
+    left: 0;
+    transition: left .4s ease-out;
+}
+#reset:hover > span {
+    left: -20px;
+}
+#resetIcon {
+    position: absolute;
+    transform: scale(1.55) rotate(15deg);
+    top: 24px;
+    right: 48px;
+    opacity: 0;
+    transition: transform .4s, opacity .4s;
+    fill: #e55a23;
+}
+#reset:hover > #resetIcon {
+    opacity: 1;
+    transform: scale(1.55) rotate(0deg);
 }
