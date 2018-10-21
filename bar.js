@@ -4,7 +4,15 @@ var a2 = document.getElementById('area2');
 var bar = document.getElementById('bar');
 var square = document.getElementById('square');
 var game = document.getElementById('game');
+var start = document.getElementById('start');
 var startbtn = document.getElementById('startbtn');
+var gameover = document.getElementById('gameover');
+var scoreEl = document.getElementById('score');
+var reset = document.getElementById('reset');
+var timeEl = document.getElementById('time');
+var scoreNotification = document.getElementById('scoreNotification');
+var scoreTracker = document.getElementById('scoreTracker');
+var timeLeft = 45;
 var angle = 0;
 var turn = 1;
 var score = 0;
@@ -12,9 +20,28 @@ var ro = Math.round;
 var ra = Math.random;
 var x = window.innerWidth;
 var y = window.innerHeight;
+var notificationTimeout = null;
 
 game.style.display = 'none';
+gameover.style.display = 'none';
 startbtn.onclick = function() { startGame(); };
+reset.onclick = function() {
+  timeLeft = 45;
+  rc1 = [7, 117, 213];
+  rc2 = [254, 174, 35];
+  previousA1Color = rc1;
+  currentA1Color = rc1;
+  futureA1Color = randomRGB();
+  previousA2Color = rc2;  
+  currentA2Color = rc2;
+  futureA2Color = randomRGB();
+  angle = 0;
+  turn = 1;
+  score = 0;
+  game.style.display = 'none';
+  gameover.style.display = 'none';
+  start.style.display = 'block';
+}
 
 // Sets the width and height of the svg to that of the window
 svg.setAttribute('width', x.toString());
@@ -32,7 +59,9 @@ var futureA2Color = randomRGB();
 function startGame() {
   // Setting initial properties
   game.style.display = 'block';
-  document.getElementById('start').style.display = 'none';
+  start.style.display = 'none';
+  timeEl.innerHTML = timeLeft.toString();
+  scoreTracker.innerHTML = 'Score: ' + score.toString();
   rotateBar(0);
   square.addEventListener('click', squareClicked);
   square.setAttribute('x', ra() * (x - 110) + 30);
@@ -54,12 +83,18 @@ function startGame() {
     futureA2Color = randomRGB();
   }, 5000);
 
+  var intervalTime = setInterval(function(){
+    timeLeft--;
+    timeEl.innerHTML = timeLeft.toString();
+  }, 1000);
+
   setTimeout(function() {
-    document.getElementById('gameover').style.display = 'block';
-    document.getElementById('score').innerHTML = score.toString();
+    gameover.style.display = 'block';
+    scoreEl.innerHTML = score.toString() + ' points';
     game.style.display = 'none';
     clearInterval(intervalGame);
     clearInterval(intervalColor);
+    clearInterval(intervalTime);
   }, 45000);
 
 }
@@ -121,6 +156,13 @@ function setBarPoints(a, b) {
 }
 
 function squareClicked() {
+  scoreNotification.style.opacity = 1;
+  clearTimeout(notificationTimeout);
+  notificationTimeout = setTimeout(function(){scoreNotification.style.opacity = 0;},500);
+  score++;
+  scoreTracker.innerHTML = 'Score: ' + score.toString();
+  square.setAttribute('x', ra() * (x - 110) + 30);
+  square.setAttribute('y', ra() * (y - 110) + 30);
   // svg elements are shuffled, that way the square shifts sides
   if(turn === 1) {
     svg.removeChild(a1);
@@ -141,10 +183,6 @@ function squareClicked() {
     setRGB(gsrgb(currentA1Color),square);
     turn = 1;
   }
-
-  score++;
-  square.setAttribute('x', ra() * (x - 110) + 30);
-  square.setAttribute('y', ra() * (y - 110) + 30);
 }
 
 function randomRGB() {
