@@ -210,17 +210,29 @@ function gsrgb(arr){
 }
 
 function changeColor() {
-  var a1r = previousA1Color[0], a1g = previousA1Color[1], a1b = previousA1Color[2];
-  var fa1r = futureA1Color[0], fa1g = futureA1Color[1], fa1b = futureA1Color[2];
-  var da1r = (fa1r - a1r)/300, da1g = (fa1g - a1g)/300, da1b = (fa1b - a1b)/300;
+  var a1r = previousA1Color[0];
+  var a1g = previousA1Color[1];
+  var a1b = previousA1Color[2];
+  var fa1r = futureA1Color[0];
+  var fa1g = futureA1Color[1];
+  var fa1b = futureA1Color[2];
+  var da1r = (fa1r - a1r)/300;
+  var da1g = (fa1g - a1g)/300;
+  var da1b = (fa1b - a1b)/300;
   currentA1Color[0] += da1r;
   currentA1Color[1] += da1g;
   currentA1Color[2] += da1b;
   setRGB(currentA1Color, a1);
 
-  var a2r = previousA2Color[0], a2g = previousA2Color[1], a2b = previousA2Color[2];
-  var fa2r = futureA2Color[0], fa2g = futureA2Color[1], fa2b = futureA2Color[2];
-  var da2r = (fa2r - a2r)/300, da2g = (fa2g - a2g)/300, da2b = (fa2b - a2b)/300;
+  var a2r = previousA2Color[0];
+  var a2g = previousA2Color[1];
+  var a2b = previousA2Color[2];
+  var fa2r = futureA2Color[0];
+  var fa2g = futureA2Color[1];
+  var fa2b = futureA2Color[2];
+  var da2r = (fa2r - a2r)/300;
+  var da2g = (fa2g - a2g)/300;
+  var da2b = (fa2b - a2b)/300;
   currentA2Color[0] += da2r;
   currentA2Color[1] += da2g;
   currentA2Color[2] += da2b;
