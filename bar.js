@@ -12,6 +12,7 @@ var reset = document.getElementById('reset');
 var timeEl = document.getElementById('time');
 var scoreNotification = document.getElementById('scoreNotification');
 var scoreTracker = document.getElementById('scoreTracker');
+var settingsBtn = document.getElementById('settingsBtn');
 var timeLeft = 45;
 var angle = 0;
 var turn = 1;
@@ -42,6 +43,10 @@ reset.onclick = function() {
   gameover.style.display = 'none';
   start.style.display = 'block';
 }
+
+settingsBtn.onclick = function() {
+  
+};
 
 // Sets the width and height of the svg to that of the window
 svg.setAttribute('width', x.toString());
