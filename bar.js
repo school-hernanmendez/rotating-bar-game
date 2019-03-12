@@ -8,12 +8,16 @@ var start = document.getElementById('start');
 var startbtn = document.getElementById('startbtn');
 var gameover = document.getElementById('gameover');
 var scoreEl = document.getElementById('score');
+var scoreElLeaderboard = document.getElementById('scoreBoard');
 var reset = document.getElementById('reset');
 var timeEl = document.getElementById('time');
 var scoreNotification = document.getElementById('scoreNotification');
 var scoreTracker = document.getElementById('scoreTracker');
 var settingsBtn = document.getElementById('settingsBtn');
-var timeLeft = 45;
+var addUser = document.getElementById('addName');
+var userName = document.getElementById('scoreName');
+var scoreForm = document.getElementById('scoreForm');
+var timeLeft = 30;
 var angle = 0;
 var turn = 1;
 var score = 0;
@@ -22,6 +26,10 @@ var ra = Math.random;
 var x = window.innerWidth;
 var y = window.innerHeight;
 var notificationTimeout = null;
+
+if(!localStorage.getItem('users')) {
+  localStorage.setItem('users', '[]')
+}
 
 game.style.display = 'none';
 gameover.style.display = 'none';
@@ -43,10 +51,13 @@ reset.onclick = function() {
   gameover.style.display = 'none';
   start.style.display = 'block';
 }
-
-settingsBtn.onclick = function() {
-  
-};
+addUser.onclick = function () {
+  var users = JSON.parse(localStorage.getItem('users'));
+  users.push([userName.value, score]);
+  localStorage.setItem('users', JSON.stringify(users));
+  scoreForm.style.display = 'none';
+  updateLeaderboard();
+}
 
 // Sets the width and height of the svg to that of the window
 svg.setAttribute('width', x.toString());
@@ -94,14 +105,49 @@ function startGame() {
   }, 1000);
 
   setTimeout(function() {
-    gameover.style.display = 'block';
+    gameover.style.display = 'flex';
     scoreEl.innerHTML = score.toString() + ' points';
+    scoreElLeaderboard.innerHTML = score.toString() + ' points';
     game.style.display = 'none';
+    scoreForm.style.display = 'block';
     clearInterval(intervalGame);
     clearInterval(intervalColor);
     clearInterval(intervalTime);
-  }, 45000);
+    updateLeaderboard();
+  }, 10000);
 
+}
+
+function updateLeaderboard() {
+  var list = document.getElementsByTagName('ol')[0]
+  console.log(list)
+  list.innerHTML = ""
+  console.log(list)
+  var users = JSON.parse(localStorage.getItem('users'))
+  console.log(users)
+  var sortedUsers = []
+  for(var i=0; i < users.length; i++){
+    if(i == 0){
+      sortedUsers.push(users[i]);
+    }
+    for (var j=0; j <= sortedUsers.length; j++) {
+      if(j == sortedUsers.length) {
+        sortedUsers.push(users[i]);
+      } else {
+        if(sortedUsers[i][1] < users[i][1]) {
+          sortedUsers.splice(i, 0, users[i]);
+        }
+      }
+    }
+  }
+  console.log(sortedUsers)
+  for(var i=0; i < 10; i ++){
+    var child = document.createElement("li");
+    if(users[i]) {
+      child.innerHTML = sortedUsers[i][0] + ' - ' + sortedUsers[i][1]
+    }
+    list.appendChild(child)
+  }
 }
 
 // function: converts points to string

@@ -117,17 +117,52 @@ html, body {
     height: 100vh;
     padding-top: 18vh;
     background: #e55a23;
+    flex-direction: row;
+    text-align: center;
+}
+#leaderboard {
+    flex: 1;
+    color: white;
+}
+#scoreForm {
+    margin: 0 auto;
+    width: 70%;
+    text-align: left;
+    font-size: 18px;
+}
+#scoreName {
+    background-color: #a84721;
+    color: white;
+    border-radius: 0;
+    padding: 4px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 18px;
+    border: 1px solid white;
+}
+#addName {
+    border-width: 0;
+    border-radius: 0;
+    background-color: white;
+    display: block;
+    color: #e55a23;
+    width: 100px;
+    height: 35px;
+    font-size: 18px;
+    font-weight: 100;
+    margin: 0 auto;
+    margin-top: 15px;
 }
 #gowrapper {
+    flex: 1;
     color: white;
-    text-align: center;
-    font-size: 50px;
+    font-size: 35px;
     padding: 30px;
 }
 #score {
     margin-bottom: 60px;
     margin-top: -35px;
-    font-size: 120px;
+    font-size: 80px;
     text-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 }
 #reset {
@@ -164,15 +199,4 @@ html, body {
 #reset:hover > #resetIcon {
     opacity: 1;
     transform: scale(1.55) rotate(0deg);
-}
-#settingsBtn {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-    fill: #444;
-    transition: transform .3s;
-    transform: rotate(-45deg);
-}
-#settingsBtn:hover {
-    transform: rotate(0deg);
 }
